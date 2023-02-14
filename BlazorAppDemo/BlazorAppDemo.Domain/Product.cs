@@ -1,4 +1,4 @@
-﻿namespace BlazorAppDemo.Shared;
+﻿namespace BlazorAppDemo.Domain;
 
 public class Product
 {
