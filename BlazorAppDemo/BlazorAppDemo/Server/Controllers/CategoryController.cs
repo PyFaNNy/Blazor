@@ -15,8 +15,12 @@ public class CategoryController : Controller
         _categoryService = categoryService;
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<ServiceResponse<List<Category>>>> GetProducts()
+    public async Task<ActionResult<ServiceResponse<List<Category>>>> GetCategories()
     {
         var result = await _categoryService.GetCategoriesAsync();
         return Ok(result);

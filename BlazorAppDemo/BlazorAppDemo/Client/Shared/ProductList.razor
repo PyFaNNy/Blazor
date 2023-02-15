@@ -2,6 +2,7 @@
 @inject IProductService productService
 @using BlazorAppDemo.Shared
 @using BlazorAppDemo.Domain
+@implements IDisposable
 
 @if (productService.Products.Count == 0)
 {
@@ -33,8 +34,13 @@ else
 }
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-        await productService.GetProducts();
+        productService.ProductsChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        productService.ProductsChanged -= StateHasChanged;
     }
 }

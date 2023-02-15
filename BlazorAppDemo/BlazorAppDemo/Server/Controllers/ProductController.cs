@@ -16,6 +16,10 @@ public class ProductController : ControllerBase
         _productService = productService;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
     {
@@ -23,10 +27,27 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="productId"></param>
+    /// <returns></returns>
     [HttpGet("{productId}")]
     public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProduct(int productId)
     {
         var result = await _productService.GetProductAsync(productId);
+        return Ok(result);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="categoryUrl"></param>
+    /// <returns></returns>
+    [HttpGet("category/{categoryUrl}")]
+    public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
+    {
+        var result = await _productService.GetProductByCategoryAsync(categoryUrl);
         return Ok(result);
     }
 }

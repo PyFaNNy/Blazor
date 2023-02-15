@@ -1,6 +1,7 @@
 ﻿using BlazorAppDemo.Application.Interfaces;
 using BlazorAppDemo.Domain;
 using BlazorAppDemo.Shared;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Server.Services.ProductService;
@@ -37,6 +38,19 @@ public class ProductService : IProductService
         {
             response.Data = product;
         }
+
+        return response;
+    }
+
+
+    public async Task<ServiceResponse<List<Product>>> GetProductByCategoryAsync(string categoryUrl)
+    {
+        var response = new ServiceResponse<List<Product>>()
+        {
+            Data = await _dbContext.Products
+                .Where(x => x.Category.Url.ToLower().Equals(categoryUrl.ToLower()))
+                .ToListAsync()
+        };
 
         return response;
     }
