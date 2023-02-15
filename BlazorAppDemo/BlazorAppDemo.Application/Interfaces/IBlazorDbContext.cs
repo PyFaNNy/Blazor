@@ -5,12 +5,9 @@ namespace BlazorAppDemo.Application.Interfaces;
 
 public interface IBlazorDbContext
 {
-    DbSet<Product> Products
-    {
-        get;
-        set;
-    }
-    
+    DbSet<Product> Products { get; set; }
+    DbSet<Category> Categories { get; set; }
+
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
     int SaveChanges();

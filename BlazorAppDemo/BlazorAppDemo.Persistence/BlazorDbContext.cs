@@ -8,6 +8,7 @@ namespace BlazorAppDemo.Persistence;
 public class BlazorDbContext : DbContext, IBlazorDbContext
 {
     public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
     
     public BlazorDbContext(DbContextOptions<BlazorDbContext> dbContextOptions) : base(dbContextOptions)
     {
