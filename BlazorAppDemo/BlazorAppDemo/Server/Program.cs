@@ -1,6 +1,5 @@
 using BlazorAppDemo.Persistence;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore;
+using BlazorAppDemo.Server.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistence(builder.Configuration);
-
+builder.Services.AddScoped<IProductService, ProductService>(); 
 var app = builder.Build();
 
 app.UseSwaggerUI();
