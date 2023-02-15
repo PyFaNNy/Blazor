@@ -8,6 +8,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
+        #region seed Categories
+
         builder.HasData(
             new Category
             {
@@ -27,16 +29,18 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
                 Name = "Video Games",
                 Url = "video-games"
             });
-        
+
+        #endregion
+
         builder.Property(x => x.Name)
             .IsRequired();
 
         builder.HasIndex(x => x.Name)
             .IsUnique();
-        
+
         builder.Property(x => x.Url)
             .IsRequired();
-        
+
         builder.HasIndex(x => x.Url)
             .IsUnique();
 
