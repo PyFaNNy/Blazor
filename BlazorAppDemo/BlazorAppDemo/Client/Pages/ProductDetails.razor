@@ -1,0 +1,46 @@
+﻿@page "/product/{id:int}"
+@using BlazorAppDemo.Domain
+@inject IProductService ProductService
+
+@if (product == null)
+{
+    <span>@messange</span>
+}
+else
+{
+    <div class="media">
+        <div class="media-img-wrapper mr-2">
+            <img class="media-img" src="@product.ImageUrl" width="180" height="320" alt="@product.Title"/>
+        </div>
+        <div class="media-body">
+            <h2 class="mb-0">@product.Title</h2>
+            <p>@product.Description</p>
+            <h4 class="price">
+                $@product.Price
+            </h4>
+        </div>
+    </div>
+}
+
+@code {
+    private Product? product = null;
+    private string messange = string.Empty;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        messange = "Loading product ...";
+        var result = await ProductService.GetProduct(Id);
+        if (!result.Success)
+        {
+            messange = result.Message;
+        }
+        else
+        {
+            product = result.Data;
+        }
+    }
+
+}

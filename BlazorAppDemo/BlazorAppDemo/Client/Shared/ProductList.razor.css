@@ -1,4 +1,4 @@
-﻿.media-ing {
+﻿.media-img {
     max-height: 200px;
     max-width: 200px;
     border-radius: 6px;
@@ -6,7 +6,7 @@
     transition: transform .2s;
 }
 
-.media-ing:hover {
+.media-img:hover {
     transform: scale(1.1);
 }
 
@@ -22,10 +22,6 @@
 .media-img-wrapper {
     width: 200px;
     text-align: center;
-}
-
-.price {
-    color: green;
 }
 
 @media (max-width: 1023.98px) {

@@ -1,5 +1,4 @@
 ﻿using BlazorAppDemo.Application.Interfaces;
-using BlazorAppDemo.Client.Services.ProductService;
 using BlazorAppDemo.Domain;
 using BlazorAppDemo.Shared;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +20,23 @@ public class ProductService : IProductService
         {
             Data = await _dbContext.Products.ToListAsync()
         };
+
+        return response;
+    }
+
+    public async Task<ServiceResponse<Product>> GetProductAsync(int id)
+    {
+        var response = new ServiceResponse<Product>();
+        var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+        if (product == null)
+        {
+            response.Success = false;
+            response.Message = "Sorry, but this product does not exist.";
+        }
+        else
+        {
+            response.Data = product;
+        }
 
         return response;
     }
