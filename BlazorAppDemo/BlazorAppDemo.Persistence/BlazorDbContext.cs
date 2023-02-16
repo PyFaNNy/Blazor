@@ -9,6 +9,8 @@ public class BlazorDbContext : DbContext, IBlazorDbContext
 {
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<ProductType> ProductTypes { get; set; }
+    public DbSet<ProductVariant> ProductVariants { get; set; }
     
     public BlazorDbContext(DbContextOptions<BlazorDbContext> dbContextOptions) : base(dbContextOptions)
     {
