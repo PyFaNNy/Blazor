@@ -1,6 +1,6 @@
-﻿using BlazorAppDemo.Domain;
+﻿using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain;
 using BlazorAppDemo.Server.Services.CategoryService;
-using BlazorAppDemo.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAppDemo.Server.Controllers;

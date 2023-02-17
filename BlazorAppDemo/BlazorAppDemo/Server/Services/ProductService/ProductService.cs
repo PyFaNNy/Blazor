@@ -1,7 +1,8 @@
 ﻿using BlazorAppDemo.Application.Interfaces;
+using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
-using BlazorAppDemo.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace BlazorAppDemo.Server.Services.ProductService;
 
@@ -59,28 +60,38 @@ public class ProductService : IProductService
         return response;
     }
 
-    public async Task<ServiceResponse<List<Product>>> SearchProducts(string searchText)
+    public Task<ServiceResponse<PaginatedList<Product>>> SearchProducts(string searchText)
     {
-        var respone = new ServiceResponse<List<Product>>()
+        throw new NotImplementedException();
+    }
+
+    public async Task<ServiceResponse<PaginatedList<Product>>> SearchProducts(string searchText, int pageIndex,
+        int pageSize)
+    {
+        var products = FindProductsBySearchText(searchText);
+
+        var paginatedList =
+            await PaginatedList<Product>.CreateAsync(products, pageIndex, pageSize);
+
+        var respone = new ServiceResponse<PaginatedList<Product>>()
         {
-            Data = await FindProductsBySearchTextAsync(searchText)
+            Data = paginatedList
         };
 
         return respone;
     }
 
-    private async Task<List<Product>> FindProductsBySearchTextAsync(string searchText)
+    private IQueryable<Product> FindProductsBySearchText(string searchText)
     {
-        return await _dbContext.Products
+        return _dbContext.Products
             .Where(p => p.Title.ToLower().Contains((searchText.ToLower())) ||
                         p.Description.ToLower().Contains(searchText.ToLower()))
-            .Include(p => p.ProductVariants)
-            .ToListAsync();
+            .Include(p => p.ProductVariants);
     }
 
     public async Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText)
     {
-        var products = await FindProductsBySearchTextAsync(searchText);
+        var products = await FindProductsBySearchText(searchText).ToListAsync();
         List<string> result = new List<string>();
 
         foreach (var product in products)

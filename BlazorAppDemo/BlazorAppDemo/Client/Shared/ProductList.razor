@@ -1,17 +1,16 @@
 ﻿@page "/products"
-@inject IProductService productService
-@using BlazorAppDemo.Shared
+@inject IProductService ProductService
 @using BlazorAppDemo.Domain
 @implements IDisposable
 
-@if (productService.Products.Count == 0)
+@if (ProductService.Products.Count == 0)
 {
-    <span>@productService.Message</span>
+    <span>@ProductService.Message</span>
 }
 else
 {
     <ul class="list-unstuled">
-        @foreach (var product in productService.Products)
+        @foreach (var product in ProductService.Products)
         {
             <li class="media my-3">
                 <div class="media-img-wrapper mr-2">
@@ -31,33 +30,44 @@ else
             </li>
         }
     </ul>
+    for (int i = 1; i <= ProductService.PageCount; i++)
+    {
+        <a class="btn
+                @(i == ProductService.CurrentPage ? "btn-info" : "btn-outline-info")
+                page-selection"
+                href="/search/@ProductService.LastSearchText/@i/@ProductService.PageSize">
+            @i
+        </a>
+    }
 }
 
 @code {
+
     protected override void OnInitialized()
     {
-        productService.ProductsChanged += StateHasChanged;
+        ProductService.ProductsChanged += StateHasChanged;
     }
 
     public void Dispose()
     {
-        productService.ProductsChanged -= StateHasChanged;
+        ProductService.ProductsChanged -= StateHasChanged;
     }
 
     private string GetPriceText(Product product)
     {
         var variants = product.ProductVariants;
-        
+
         if (variants.Count == 0)
         {
             return String.Empty;
         }
         else if (variants.Count == 1)
         {
-            return  $"{variants[0].Price}";
+            return $"{variants[0].Price}";
         }
-        
+
         decimal minPrice = variants.Min(v => v.Price);
         return $"Starting at ${minPrice}";
     }
+
 }

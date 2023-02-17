@@ -1,5 +1,5 @@
-﻿using BlazorAppDemo.Domain;
-using BlazorAppDemo.Shared;
+﻿using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain;
 using Microsoft.AspNetCore.Mvc;
 using IProductService = BlazorAppDemo.Server.Services.ProductService.IProductService;
 
@@ -10,6 +10,7 @@ namespace BlazorAppDemo.Server.Controllers;
 public class ProductController : ControllerBase
 {
     private readonly IProductService _productService;
+
     public ProductController(IProductService productService)
     {
         _productService = productService;
@@ -25,7 +26,7 @@ public class ProductController : ControllerBase
         var result = await _productService.GetProductsAsync();
         return Ok(result);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -37,7 +38,7 @@ public class ProductController : ControllerBase
         var result = await _productService.GetProductAsync(productId);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -49,21 +50,40 @@ public class ProductController : ControllerBase
         var result = await _productService.GetProductByCategoryAsync(categoryUrl);
         return Ok(result);
     }
-    
-    [HttpGet("search/{searchText}")]
-    public async Task<ActionResult<ServiceResponse<List<Product>>>> SearchProducts(string searchText)
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="searchText"></param>
+    /// <param name="pageIndex"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
+    [HttpGet("search/{searchText}/{pageIndex}/{pageSize}")]
+    public async Task<ActionResult<ServiceResponse<PaginatedList<Product>>>>
+        SearchProducts(string searchText,
+            int pageIndex = 1,
+            int pageSize = 10)
     {
-        var result = await _productService.SearchProducts(searchText);
+        var result = await _productService.SearchProducts(searchText, pageIndex, pageSize);
         return Ok(result);
     }
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="searchText"></param>
+    /// <returns></returns>
     [HttpGet("searchsuggestions/{searchText}")]
     public async Task<ActionResult<ServiceResponse<List<Product>>>> SearchSuggestions(string searchText)
     {
         var result = await _productService.GetProductSearchSuggestions(searchText);
         return Ok(result);
     }
-    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("feature")]
     public async Task<ActionResult<ServiceResponse<List<Product>>>> GetFeaturedProduct()
     {

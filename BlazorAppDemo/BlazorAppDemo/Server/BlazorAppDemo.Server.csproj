@@ -26,7 +26,6 @@
     <ProjectReference Include="..\..\BlazorAppDemo.Application\BlazorAppDemo.Application.csproj" />
     <ProjectReference Include="..\..\BlazorAppDemo.Persistence\BlazorAppDemo.Persistence.csproj" />
     <ProjectReference Include="..\Client\BlazorAppDemo.Client.csproj" />
-    <ProjectReference Include="..\Shared\BlazorAppDemo.Shared.csproj" />
   </ItemGroup>
 
 

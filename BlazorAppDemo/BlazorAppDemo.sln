@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppDemo.Server", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppDemo.Client", "BlazorAppDemo\Client\BlazorAppDemo.Client.csproj", "{D3421716-7871-486D-9A48-EEECFE226296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppDemo.Shared", "BlazorAppDemo\Shared\BlazorAppDemo.Shared.csproj", "{8C31E2BE-4980-4B31-831F-90469C09DBF2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAppDemo.Persistence", "BlazorAppDemo.Persistence\BlazorAppDemo.Persistence.csproj", "{0D92F8B2-27BE-4BD8-A240-6A0BE60D6FD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{294D7BB9-CE5D-4FDE-A7EC-7532FA52CCDF}"
@@ -35,10 +33,6 @@ Global
 		{D3421716-7871-486D-9A48-EEECFE226296}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3421716-7871-486D-9A48-EEECFE226296}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3421716-7871-486D-9A48-EEECFE226296}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C31E2BE-4980-4B31-831F-90469C09DBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C31E2BE-4980-4B31-831F-90469C09DBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C31E2BE-4980-4B31-831F-90469C09DBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C31E2BE-4980-4B31-831F-90469C09DBF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D92F8B2-27BE-4BD8-A240-6A0BE60D6FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D92F8B2-27BE-4BD8-A240-6A0BE60D6FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D92F8B2-27BE-4BD8-A240-6A0BE60D6FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU

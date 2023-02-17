@@ -1,6 +1,6 @@
 ﻿using BlazorAppDemo.Application.Interfaces;
+using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
-using BlazorAppDemo.Shared;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Server.Services.CategoryService;

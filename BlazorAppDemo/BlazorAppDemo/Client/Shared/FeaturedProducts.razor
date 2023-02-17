@@ -10,7 +10,7 @@
 }
 else
 {
-    <div class="container">
+    <div class="container align-content-center">
         @foreach (var product in ProductService.Products)
         {
             @if (product.Featured)
@@ -25,7 +25,7 @@ else
                     @if (product.ProductVariants.Count > 0)
                     {
                         <h5 class="price">
-                            $@product.ProductVariants[0],Price
+                            $@product.ProductVariants[0].Price
                         </h5>
                     }
                 </div>

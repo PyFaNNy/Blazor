@@ -1,5 +1,5 @@
-﻿using BlazorAppDemo.Domain;
-using BlazorAppDemo.Shared;
+﻿using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain;
 
 namespace BlazorAppDemo.Server.Services.CategoryService;
 

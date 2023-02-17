@@ -1,4 +1,4 @@
-﻿namespace BlazorAppDemo.Shared;
+﻿namespace BlazorAppDemo.Application.Models;
 
 public class ServiceResponse<T>
 {
