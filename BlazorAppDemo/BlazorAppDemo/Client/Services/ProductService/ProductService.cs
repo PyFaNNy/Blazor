@@ -20,8 +20,8 @@ public class ProductService : IProductService
     public async Task GetProducts(string? categoryUrl = null)
     {
         var result = categoryUrl == null
-            ? await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/Product")
-            : await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/Product/category/{categoryUrl}");
+            ? await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product/feature")
+            : await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
         if (result?.Data != null)
         {
             Products = result.Data;
@@ -35,7 +35,7 @@ public class ProductService : IProductService
         var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"api/product/{productId}");
         return result;
     }
-
+    
     public async Task SearchProducts(string searchText)
     {
         var result = await _http

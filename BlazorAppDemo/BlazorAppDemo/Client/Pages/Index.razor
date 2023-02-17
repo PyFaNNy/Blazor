@@ -6,13 +6,20 @@
 
 <PageTitle>My Shop</PageTitle>
 
-<ProductList></ProductList>
+@if (!string.IsNullOrWhiteSpace(SearchText) && !string.IsNullOrWhiteSpace(CategoryUrl))
+{
+    <FeaturedProducts></FeaturedProducts>
+}
+else
+{
+    <ProductList></ProductList>
+}
 
 @code
 {
     [Parameter]
     public string? CategoryUrl { get; set; } = null;
-    
+
     [Parameter]
     public string? SearchText { get; set; } = null;
 

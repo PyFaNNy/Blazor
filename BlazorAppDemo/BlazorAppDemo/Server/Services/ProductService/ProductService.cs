@@ -73,14 +73,14 @@ public class ProductService : IProductService
     {
         return await _dbContext.Products
             .Where(p => p.Title.ToLower().Contains((searchText.ToLower())) ||
-                        p.Description.ToLower().Contains(searchText.ToLower()) )
+                        p.Description.ToLower().Contains(searchText.ToLower()))
             .Include(p => p.ProductVariants)
             .ToListAsync();
     }
 
     public async Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText)
     {
-        var products =await FindProductsBySearchTextAsync(searchText);
+        var products = await FindProductsBySearchTextAsync(searchText);
         List<string> result = new List<string>();
 
         foreach (var product in products)
@@ -107,7 +107,20 @@ public class ProductService : IProductService
                 }
             }
         }
-        
+
         return new ServiceResponse<List<string>> {Data = result};
+    }
+
+    public async Task<ServiceResponse<List<Product>>> GetFeaturedProducts()
+    {
+        var response = new ServiceResponse<List<Product>>
+        {
+            Data = await _dbContext.Products
+                .Where(x => x.Featured)
+                .Include(x => x.ProductVariants)
+                .ToListAsync()
+        };
+
+        return response;
     }
 }
