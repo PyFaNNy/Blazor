@@ -1,5 +1,6 @@
 using BlazorAppDemo.Server.Services.CategoryService;
 using BlazorAppDemo.Persistence;
+using BlazorAppDemo.Server.Services.CartService;
 using BlazorAppDemo.Server.Services.ProductService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>(); 
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 
