@@ -1,5 +1,6 @@
 using BlazorAppDemo.Server.Services.CategoryService;
 using BlazorAppDemo.Persistence;
+using BlazorAppDemo.Server.Services.AuthService;
 using BlazorAppDemo.Server.Services.CartService;
 using BlazorAppDemo.Server.Services.ProductService;
 
@@ -17,6 +18,7 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
