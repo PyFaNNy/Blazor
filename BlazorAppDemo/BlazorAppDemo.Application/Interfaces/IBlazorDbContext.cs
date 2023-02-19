@@ -9,6 +9,7 @@ public interface IBlazorDbContext
     DbSet<Category> Categories { get; set; }
     DbSet<ProductType> ProductTypes { get; set; }
     DbSet<ProductVariant> ProductVariants { get; set; }
+    DbSet<User> Users { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
