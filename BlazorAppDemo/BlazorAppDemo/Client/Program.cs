@@ -1,4 +1,5 @@
 using BlazorAppDemo.Client;
+using BlazorAppDemo.Client.Services.AuthService;
 using BlazorAppDemo.Client.Services.CartService;
 using BlazorAppDemo.Client.Services.CategoryService;
 using BlazorAppDemo.Client.Services.ProductService;
@@ -17,5 +18,6 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<IProductService, ProductService>(); 
 builder.Services.AddScoped<ICategoryService, CategoryService>(); 
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 await builder.Build().RunAsync();
