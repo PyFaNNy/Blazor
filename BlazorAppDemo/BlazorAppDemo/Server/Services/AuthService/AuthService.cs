@@ -1,59 +1,120 @@
-﻿using System.Security.Cryptography;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
 using BlazorAppDemo.Application.Interfaces;
 using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BlazorAppDemo.Server.Services.AuthService;
 
-public class AuthService : IAuthService
-{
-    private readonly IBlazorDbContext _dbContext;
-
-    public AuthService(IBlazorDbContext dbContext)
+ public class AuthService : IAuthService
     {
-        _dbContext = dbContext;
-    }
+        private readonly IBlazorDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-    public async Task<ServiceResponse<int>> Register(User user, string password)
-    {
-        if (await UserExists(user.Email))
+        public AuthService(IBlazorDbContext context, IConfiguration configuration)
         {
-            return new ServiceResponse<int>
+            _dbContext = context;
+            _configuration = configuration;
+        }
+
+        public async Task<ServiceResponse<string>> Login(string email, string password)
+        {
+            var response = new ServiceResponse<string>();
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(x => x.Email.ToLower().Equals(email.ToLower()));
+            if (user == null)
             {
-                Success = false,
-                Message = "User already exists."
+                response.Success = false;
+                response.Message = "User not found.";
+            }
+            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            {
+                response.Success = false;
+                response.Message = "Wrong password.";
+            }
+            else
+            {
+                response.Data = CreateToken(user);
+            }
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<int>> Register(User user, string password)
+        {
+            if (await UserExists(user.Email))
+            {
+                return new ServiceResponse<int>
+                {
+                    Success = false,
+                    Message = "User already exists."
+                };
+            }
+
+            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            _dbContext.Users.Add(user);
+            await _dbContext.SaveChangesAsync(new CancellationToken());
+
+            return new ServiceResponse<int> { Data = user.Id, Message = "Registration successful!" };
+        }
+
+        public async Task<bool> UserExists(string email)
+        {
+            if (await _dbContext.Users.AnyAsync(user => user.Email.ToLower()
+                 .Equals(email.ToLower())))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac
+                    .ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash =
+                    hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
+        }
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Email)
             };
-        }
 
-        CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
+                .GetBytes(_configuration.GetSection("AppSettings:Token").Value));
 
-        user.PasswordHash = passwordHash;
-        user.PasswordSalt = passwordSalt;
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-        _dbContext.Users.Add(user);
-        await _dbContext.SaveChangesAsync(new CancellationToken());
+            var token = new JwtSecurityToken(
+                    claims: claims,
+                    expires: DateTime.Now.AddDays(1),
+                    signingCredentials: creds);
 
-        return new ServiceResponse<int> { Data = user.Id, Message = "Registration successful!" };
-    }
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-    public async Task<bool> UserExists(string email)
-    {
-        if (await _dbContext.Users.AnyAsync(user => user.Email.ToLower()
-                .Equals(email.ToLower())))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-    {
-        using (var hmac = new HMACSHA512())
-        {
-            passwordSalt = hmac.Key;
-            passwordHash = hmac
-                .ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            return jwt;
         }
     }
-}
