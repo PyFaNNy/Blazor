@@ -1,6 +1,7 @@
 ﻿@page "/products"
 @inject IProductService ProductService
 @using BlazorAppDemo.Domain
+@using BlazorAppDemo.Client.Services.ProductService
 @implements IDisposable
 
 @if (ProductService.Products.Count == 0)
@@ -9,6 +10,7 @@
 }
 else
 {
+    <h1>Hello</h1>
     <ul class="list-unstuled">
         @foreach (var product in ProductService.Products)
         {
