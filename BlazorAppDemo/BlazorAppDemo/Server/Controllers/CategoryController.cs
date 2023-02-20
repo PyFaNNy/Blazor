@@ -1,6 +1,5 @@
 ﻿using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
-using BlazorAppDemo.Server.Services.CategoryService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAppDemo.Server.Controllers;

@@ -1,5 +1,4 @@
 ﻿using BlazorAppDemo.Application.Models;
-using BlazorAppDemo.Server.Services.CartService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAppDemo.Server.Controllers;

@@ -1,8 +1,6 @@
 ﻿@page "/login"
 @using Microsoft.AspNetCore.WebUtilities
-@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components
-@using BlazorAppDemo.Application.Models
 @inject IAuthService AuthService
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
@@ -12,22 +10,24 @@
 
 <h3>Login</h3>
 
-<EditForm Model="user" OnValidSubmit="HandleLogin">
-    <DataAnnotationsValidator />
-    <div class="mb-3">
-        <label for="email">Email</label>
-        <InputText id="email" @bind-Value="user.Email" class="form-control" />
-        <ValidationMessage For="@(() => user.Email)" />
+<div class="col-md-4">
+    <EditForm Model="user" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator/>
+        <div class="mb-3">
+            <label for="email">Email</label>
+            <InputText id="email" @bind-Value="user.Email" class="form-control"/>
+            <ValidationMessage For="@(() => user.Email)"/>
+        </div>
+        <div class="mb-3">
+            <label for="password">Password</label>
+            <InputText id="password" @bind-Value="user.Password" class="form-control" type="password"/>
+            <ValidationMessage For="@(() => user.Password)"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </EditForm>
+    <div class="text-danger">
+        <span>@errorMessage</span>
     </div>
-    <div class="mb-3">
-        <label for="password">Password</label>
-        <InputText id="password" @bind-Value="user.Password" class="form-control" type="password" />
-        <ValidationMessage For="@(() => user.Password)" />
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</EditForm>
-<div class="text-danger">
-    <span>@errorMessage</span>
 </div>
 
 @code {
@@ -62,4 +62,5 @@
             errorMessage = result.Message;
         }
     }
+
 }
