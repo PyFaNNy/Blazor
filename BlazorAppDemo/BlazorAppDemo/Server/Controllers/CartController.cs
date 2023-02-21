@@ -1,4 +1,5 @@
-﻿using BlazorAppDemo.Application.Models;
+﻿using System.Security.Claims;
+using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,33 @@ public class CartController : ControllerBase
     public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> GetCartProducts(List<CartItem> cartItems)
     {
         var result = await _cartService.GetCartProducts(cartItems);
+        return Ok(result);
+    }
+    
+    [HttpPost]
+    public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> StoreCartItems(List<CartItem> cartItems)
+    {
+        var result = await _cartService.StoreCartItems(cartItems);
+        return Ok(result);
+    }
+    
+    [HttpPost("add")]
+    public async Task<ActionResult<ServiceResponse<bool>>> AddToCart(CartItem cartItems)
+    {
+        var result = await _cartService.AddToCart(cartItems);
+        return Ok(result);
+    }
+    
+    [HttpGet("count")]
+    public async Task<ActionResult<ServiceResponse<int>>> GetCartItemsCount()
+    {
+        return Ok(await _cartService.GetCartItemsCount());
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> GetDbCartProducts()
+    {
+        var result = await _cartService.GetDbCartProducts();
         return Ok(result);
     }
 }
