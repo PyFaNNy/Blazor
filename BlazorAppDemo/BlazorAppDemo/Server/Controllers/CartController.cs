@@ -37,6 +37,20 @@ public class CartController : ControllerBase
         return Ok(result);
     }
     
+    [HttpPost("update-quantity")]
+    public async Task<ActionResult<ServiceResponse<bool>>> UpdateQuantity(CartItem cartItems)
+    {
+        var result = await _cartService.UpdateQuantity(cartItems);
+        return Ok(result);
+    }
+    
+    [HttpDelete("{productId}/{productTypeId}")]
+    public async Task<ActionResult<ServiceResponse<bool>>> RemoveItemFromCart(int productId, int productTypeId)
+    {
+        var result = await _cartService.RemoveItemFromCart(productId, productTypeId);
+        return Ok(result);
+    }
+    
     [HttpGet("count")]
     public async Task<ActionResult<ServiceResponse<int>>> GetCartItemsCount()
     {

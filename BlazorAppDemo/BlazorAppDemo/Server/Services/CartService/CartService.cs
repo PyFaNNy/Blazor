@@ -112,4 +112,46 @@ public class CartService : ICartService
         await _dbContext.SaveChangesAsync(new CancellationToken());
         return new ServiceResponse<bool> {Data = true};
     }
+
+    public async Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem)
+    {
+        var dbCartItem = await _dbContext.CartItems
+            .FirstOrDefaultAsync(x => x.ProductId == cartItem.ProductId &&
+                                      x.ProductTypeId == cartItem.ProductTypeId &&
+                                      x.UserId == GetUserId());
+
+        if (dbCartItem is null)
+        {
+            return new ServiceResponse<bool>
+            {
+                Data = false,
+                Message = "Cart item does not exist"
+            };
+        }
+
+        dbCartItem.Quantity = cartItem.Quantity;
+        await _dbContext.SaveChangesAsync(new CancellationToken());
+        return new ServiceResponse<bool> {Data = true};
+    }
+
+    public async Task<ServiceResponse<bool>> RemoveItemFromCart(int productId, int productTypeId)
+    {
+        var dbCartItem = await _dbContext.CartItems
+            .FirstOrDefaultAsync(x => x.ProductId == productId &&
+                                      x.ProductTypeId == productTypeId &&
+                                      x.UserId == GetUserId());
+
+        if (dbCartItem is null)
+        {
+            return new ServiceResponse<bool>
+            {
+                Data = false,
+                Message = "Cart item does not exist"
+            };
+        }
+
+        _dbContext.CartItems.Remove(dbCartItem);
+        await _dbContext.SaveChangesAsync(new CancellationToken());
+        return new ServiceResponse<bool> {Data = true};
+    }
 }
