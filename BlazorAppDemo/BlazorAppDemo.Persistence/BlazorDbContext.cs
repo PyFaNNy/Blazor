@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using BlazorAppDemo.Application.Interfaces;
 using BlazorAppDemo.Domain;
+using BlazorAppDemo.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Persistence;
@@ -12,6 +13,7 @@ public class BlazorDbContext : DbContext, IBlazorDbContext
     public DbSet<ProductType> ProductTypes { get; set; }
     public DbSet<ProductVariant> ProductVariants { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
     
     public BlazorDbContext(DbContextOptions<BlazorDbContext> dbContextOptions) : base(dbContextOptions)
     {

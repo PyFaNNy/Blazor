@@ -4,6 +4,7 @@ using System.Security.Cryptography;
 using BlazorAppDemo.Application.Interfaces;
 using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
+using BlazorAppDemo.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 

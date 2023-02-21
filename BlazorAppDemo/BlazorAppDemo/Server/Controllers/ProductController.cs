@@ -1,5 +1,6 @@
 ﻿using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
+using BlazorAppDemo.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 using IProductService = BlazorAppDemo.Server.Services.ProductService.IProductService;
 

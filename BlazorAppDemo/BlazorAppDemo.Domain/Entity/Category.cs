@@ -1,4 +1,4 @@
-﻿namespace BlazorAppDemo.Domain;
+﻿namespace BlazorAppDemo.Domain.Entity;
 
 public class Category
 {

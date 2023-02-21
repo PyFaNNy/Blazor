@@ -1,4 +1,5 @@
 ﻿using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorAppDemo.Server.Controllers;

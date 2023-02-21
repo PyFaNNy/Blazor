@@ -1,4 +1,4 @@
-﻿namespace BlazorAppDemo.Domain;
+﻿namespace BlazorAppDemo.Domain.Entity;
 
 public class User
 {
@@ -7,4 +7,5 @@ public class User
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }
     public DateTime DateCreated { get; set; } = DateTime.Now;
+    public CartItem CartItem { get; set; }
 }

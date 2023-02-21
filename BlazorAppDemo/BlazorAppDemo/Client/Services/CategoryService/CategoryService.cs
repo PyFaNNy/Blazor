@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Json;
 using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
+using BlazorAppDemo.Domain.Entity;
 
 namespace BlazorAppDemo.Client.Services.CategoryService;
 

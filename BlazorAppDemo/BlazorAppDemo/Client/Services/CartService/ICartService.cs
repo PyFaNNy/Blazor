@@ -1,4 +1,5 @@
 ﻿using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain.Entity;
 
 namespace BlazorAppDemo.Client.Services.CartService;
 

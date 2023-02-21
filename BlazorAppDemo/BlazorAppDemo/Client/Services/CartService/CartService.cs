@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Domain.Entity;
 using Blazored.LocalStorage;
 
 namespace BlazorAppDemo.Client.Services.CartService;

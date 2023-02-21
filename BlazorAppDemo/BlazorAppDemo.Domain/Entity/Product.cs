@@ -1,4 +1,4 @@
-﻿namespace BlazorAppDemo.Domain;
+﻿namespace BlazorAppDemo.Domain.Entity;
 
 public class Product
 {
@@ -10,4 +10,5 @@ public class Product
     public int CategoryId { get; set; }
     public bool Featured { get; set; } = false;
     public List<ProductVariant> ProductVariants { get; set; } = new List<ProductVariant>();
+    public List<CartItem> CartItems { get; set; } = new List<CartItem>();
 }
