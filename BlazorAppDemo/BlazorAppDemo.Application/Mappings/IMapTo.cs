@@ -2,7 +2,7 @@
 
 namespace BlazorAppDemo.Application.Mappings;
 
-public interface IMapTo
+public interface IMapTo<T>
 {
     public void Mapping(Profile profile) => profile.CreateMap(GetType(), GetType());
 }
