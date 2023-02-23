@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorAppDemo.Application.Models;
+namespace BlazorAppDemo.Application.Models.User;
 
 public class UserLogin
 {

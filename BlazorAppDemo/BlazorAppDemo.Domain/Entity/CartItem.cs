@@ -1,4 +1,6 @@
-﻿namespace BlazorAppDemo.Domain.Entity;
+﻿using BlazorAppDemo.Domain.Entity.Products;
+
+namespace BlazorAppDemo.Domain.Entity;
 
 public class CartItem
 {

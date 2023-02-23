@@ -1,4 +1,6 @@
-﻿namespace BlazorAppDemo.Domain.Entity;
+﻿using BlazorAppDemo.Domain.Entity.Orders;
+
+namespace BlazorAppDemo.Domain.Entity.Products;
 
 public class Product
 {
@@ -11,4 +13,5 @@ public class Product
     public bool Featured { get; set; } = false;
     public List<ProductVariant> ProductVariants { get; set; } = new List<ProductVariant>();
     public List<CartItem> CartItems { get; set; } = new List<CartItem>();
+    public List<OrderItem> OrderItems { get; set; } = null;
 }

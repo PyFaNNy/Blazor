@@ -1,4 +1,6 @@
-﻿namespace BlazorAppDemo.Domain.Entity;
+﻿using BlazorAppDemo.Domain.Entity.Orders;
+
+namespace BlazorAppDemo.Domain.Entity;
 
 public class User
 {
@@ -8,4 +10,5 @@ public class User
     public byte[] PasswordSalt { get; set; }
     public DateTime DateCreated { get; set; } = DateTime.Now;
     public CartItem CartItem { get; set; }
+    public List<Order> Orders { get; set; } = new List<Order>();
 }

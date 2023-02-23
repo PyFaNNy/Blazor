@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Json;
 using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Application.Models.User;
 
 namespace BlazorAppDemo.Client.Services.AuthService;
 

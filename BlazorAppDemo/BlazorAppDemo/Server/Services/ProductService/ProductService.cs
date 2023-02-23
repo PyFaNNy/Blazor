@@ -2,6 +2,7 @@
 using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain;
 using BlazorAppDemo.Domain.Entity;
+using BlazorAppDemo.Domain.Entity.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorAppDemo.Server.Services.ProductService;

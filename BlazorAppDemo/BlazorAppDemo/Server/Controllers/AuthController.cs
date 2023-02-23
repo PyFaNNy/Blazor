@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using BlazorAppDemo.Application.Models;
+using BlazorAppDemo.Application.Models.User;
 using BlazorAppDemo.Domain;
 using BlazorAppDemo.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
