@@ -18,7 +18,7 @@ public class BlazorDbContext : DbContext, IBlazorDbContext
     public DbSet<CartItem> CartItems { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
-    
+    public DbSet<Address> Addresses { get; set; }    
     public BlazorDbContext(DbContextOptions<BlazorDbContext> dbContextOptions) : base(dbContextOptions)
     {
     }

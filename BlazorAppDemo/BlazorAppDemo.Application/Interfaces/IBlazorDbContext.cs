@@ -16,6 +16,7 @@ public interface IBlazorDbContext
     DbSet<CartItem> CartItems { get; set; }
     DbSet<Order> Orders { get; set; }
     DbSet<OrderItem> OrderItems { get; set; }
+    DbSet<Address> Addresses { get; set; }  
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
