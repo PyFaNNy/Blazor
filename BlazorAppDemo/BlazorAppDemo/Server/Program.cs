@@ -1,4 +1,5 @@
 using BlazorAppDemo.Persistence;
+using BlazorAppDemo.Server.Services.AddressService;
 using BlazorAppDemo.Server.Services.OrderService;
 using BlazorAppDemo.Server.Services.PaymentService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -22,7 +23,7 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
-
+builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
