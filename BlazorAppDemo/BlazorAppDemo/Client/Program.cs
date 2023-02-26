@@ -1,4 +1,5 @@
 using BlazorAppDemo.Client;
+using BlazorAppDemo.Client.Services.AddressService;
 using BlazorAppDemo.Client.Services.AuthService;
 using BlazorAppDemo.Client.Services.CartService;
 using BlazorAppDemo.Client.Services.CategoryService;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
