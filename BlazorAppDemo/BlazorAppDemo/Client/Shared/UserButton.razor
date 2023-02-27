@@ -15,10 +15,11 @@
                 <a href="profile" class="dropdown-item">Profile</a>
                 <a href="orders" class="dropdown-item">Orders</a>
                 <hr />
+                <AdminMenu />
                 <button class="dropdown-item" @onclick="Logout">Logout</button>
             </Authorized>
             <NotAuthorized>
-                <a href="login?returnUrl=@NavigationManager.ToBaseRelativePath(NavigationManager.Uri)" class="dropdown-item">Login</a>
+                <a href="/login" class="dropdown-item">Login</a>
                 <a href="register" class="dropdown-item">Register</a>
             </NotAuthorized>
         </AuthorizeView>
