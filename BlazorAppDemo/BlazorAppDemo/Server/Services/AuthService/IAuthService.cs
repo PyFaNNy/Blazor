@@ -1,5 +1,4 @@
 ﻿using BlazorAppDemo.Application.Models;
-using BlazorAppDemo.Domain;
 using BlazorAppDemo.Domain.Entity;
 
 namespace BlazorAppDemo.Server.Services.AuthService;

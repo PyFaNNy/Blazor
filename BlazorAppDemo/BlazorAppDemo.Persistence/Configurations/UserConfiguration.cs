@@ -1,5 +1,4 @@
-﻿using BlazorAppDemo.Domain;
-using BlazorAppDemo.Domain.Entity;
+﻿using BlazorAppDemo.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

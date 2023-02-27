@@ -1,5 +1,4 @@
-﻿using BlazorAppDemo.Domain;
-using BlazorAppDemo.Domain.Entity;
+﻿using BlazorAppDemo.Domain.Entity;
 
 namespace BlazorAppDemo.Client.Services.CategoryService;
 

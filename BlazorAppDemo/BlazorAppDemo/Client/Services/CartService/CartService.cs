@@ -3,7 +3,6 @@ using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Client.Services.AuthService;
 using BlazorAppDemo.Domain.Entity;
 using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components.Authorization;
 
 namespace BlazorAppDemo.Client.Services.CartService;
 

@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using BlazorAppDemo.Application.Interfaces;
-using BlazorAppDemo.Domain;
 using BlazorAppDemo.Domain.Entity;
 using BlazorAppDemo.Domain.Entity.Orders;
 using BlazorAppDemo.Domain.Entity.Products;

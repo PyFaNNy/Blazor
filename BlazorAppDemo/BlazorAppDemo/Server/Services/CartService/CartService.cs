@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using BlazorAppDemo.Application.Interfaces;
+﻿using BlazorAppDemo.Application.Interfaces;
 using BlazorAppDemo.Application.Models;
 using BlazorAppDemo.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
