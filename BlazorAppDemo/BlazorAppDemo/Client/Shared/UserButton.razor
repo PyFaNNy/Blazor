@@ -16,10 +16,10 @@
                 <a href="orders" class="dropdown-item">Orders</a>
                 <hr />
                 <AdminMenu />
-                <button class="dropdown-item" @onclick="Logout">Logout</button>
+                <a class="dropdown-item" @onclick="Logout">Logout</a>
             </Authorized>
             <NotAuthorized>
-                <a href="/login" class="dropdown-item">Login</a>
+                <a href="login" class="dropdown-item" @onclick="@(() => {Console.Write("login");})">Login</a>
                 <a href="register" class="dropdown-item">Register</a>
             </NotAuthorized>
         </AuthorizeView>
@@ -38,7 +38,7 @@
 
     private async Task HideUserMenu()
     {
-        await Task.Delay(200);
+        await Task.Delay(400);
         showUserMenu = false;
     }
 

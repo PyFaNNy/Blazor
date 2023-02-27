@@ -20,6 +20,7 @@ public class CategoryService : ICategoryService
 
     public async Task AddCategory(Category category)
     {
+        Console.Write(category);
         var response = await _http.PostAsJsonAsync("api/Category/admin", category);
         AdminCategories = (await response.Content
             .ReadFromJsonAsync<ServiceResponse<List<Category>>>()).Data;
