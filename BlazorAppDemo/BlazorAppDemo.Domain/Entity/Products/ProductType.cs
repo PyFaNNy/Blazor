@@ -15,5 +15,5 @@ public class ProductType
     [JsonIgnore]
     public List<ProductVariant> ProductVariants { get; set; } = new List<ProductVariant>();
     public List<CartItem> CartItems { get; set; } = new List<CartItem>();
-    public List<OrderItem> OrderItems { get; set; } = null;
+    public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 }
